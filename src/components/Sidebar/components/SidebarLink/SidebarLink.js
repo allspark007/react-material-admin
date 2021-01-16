@@ -17,7 +17,7 @@ import useStyles from "./styles";
 
 // components
 import Dot from "../Dot";
-
+import ItemIcon from './Icon'
 export default function SidebarLink({
   link,
   icon,
@@ -69,7 +69,7 @@ export default function SidebarLink({
             [classes.linkIconActive]: isLinkActive,
           })}
         >
-          {nested ? <Dot color={isLinkActive && "primary"} /> : icon}
+          {nested ? <Dot color={isLinkActive && "primary"} /> : <ItemIcon name={icon}></ItemIcon>}
         </ListItemIcon>
         <ListItemText
           classes={{
@@ -98,7 +98,7 @@ export default function SidebarLink({
             [classes.linkIconActive]: isLinkActive,
           })}
         >
-          {icon ? icon : <InboxIcon />}
+          <ItemIcon name={icon}></ItemIcon>
         </ListItemIcon>
         <ListItemText
           classes={{

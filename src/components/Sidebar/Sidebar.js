@@ -87,7 +87,7 @@ function Sidebar({ location }) {
   var theme = useTheme();
 
   // global
-  var { isSidebarOpened } = useLayoutState();
+  var { isSidebarOpened,sidebar } = useLayoutState();
   var layoutDispatch = useLayoutDispatch();
 
   // local
@@ -127,7 +127,7 @@ function Sidebar({ location }) {
         </IconButton>
       </div>
       <List className={classes.sidebarList}>
-        {structure.map(link => (
+        {sidebar.map(link => (
           <SidebarLink
             key={link.id}
             location={location}

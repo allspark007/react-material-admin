@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import {
   Route,
   Switch,
@@ -8,6 +8,7 @@ import {
 import classnames from "classnames";
 import {Box, IconButton, Link} from '@material-ui/core'
 import Icon from '@mdi/react'
+import * as api from '../../pages/api/service'
 
 //icons
 import {
@@ -33,13 +34,24 @@ import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 
 // context
-import { useLayoutState } from "../../context/LayoutContext";
+import { useLayoutState,useLayoutDispatch } from "../../context/LayoutContext";
 
 function Layout(props) {
   var classes = useStyles();
-
+  const dispatch = useLayoutDispatch()
+  let role = localStorage.getItem('role')
   // global
   var layoutState = useLayoutState();
+
+  useEffect(()=>{
+    if(role)
+    {
+      api.getsidebar(role).then(res=>{
+        dispatch({type:"SIDEBAR",sidebar:res.data})
+      }).catch(err=>console.log(err))
+    }
+    
+  },[role])
 
   return (
     <div className={classes.root}>

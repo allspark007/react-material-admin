@@ -18,6 +18,7 @@ import useStyles from "./styles";
 // logo
 import logo from "./logo.svg";
 import google from "../../images/google.svg";
+import * as api from '../api/service'
 
 // context
 import { useUserDispatch, loginUser } from "../../context/UserContext";
@@ -33,8 +34,30 @@ function Login(props) {
   var [error, setError] = useState(null);
   var [activeTabId, setActiveTabId] = useState(0);
   var [nameValue, setNameValue] = useState("");
-  var [loginValue, setLoginValue] = useState("admin@flatlogic.com");
-  var [passwordValue, setPasswordValue] = useState("password");
+  var [loginValue, setLoginValue] = useState("test");
+  var [passwordValue, setPasswordValue] = useState("test");
+
+  const loginrequest = () => {
+    setIsLoading(true)
+    api.userlogin(loginValue,passwordValue).then(res=>{
+      if(res.data.success)
+      {
+        loginUser(
+          userDispatch,
+          res.data.info.role,
+          props.history,
+          setIsLoading,
+          setError,
+        )
+      }
+      else
+      {
+        setIsLoading(false)
+        setError(res.data.error)
+      }
+    })
+
+  }
 
   return (
     <Grid container className={classes.container}>
@@ -87,6 +110,7 @@ function Login(props) {
                 placeholder="Email Adress"
                 type="email"
                 fullWidth
+                required
               />
               <TextField
                 id="password"
@@ -102,6 +126,7 @@ function Login(props) {
                 placeholder="Password"
                 type="password"
                 fullWidth
+                required
               />
               <div className={classes.formButtons}>
                 {isLoading ? (
@@ -112,14 +137,7 @@ function Login(props) {
                       loginValue.length === 0 || passwordValue.length === 0
                     }
                     onClick={() =>
-                      loginUser(
-                        userDispatch,
-                        loginValue,
-                        passwordValue,
-                        props.history,
-                        setIsLoading,
-                        setError,
-                      )
+                      loginrequest()
                     }
                     variant="contained"
                     color="primary"
@@ -202,14 +220,7 @@ function Login(props) {
                 ) : (
                   <Button
                     onClick={() =>
-                      loginUser(
-                        userDispatch,
-                        loginValue,
-                        passwordValue,
-                        props.history,
-                        setIsLoading,
-                        setError,
-                      )
+                      loginrequest()
                     }
                     disabled={
                       loginValue.length === 0 ||

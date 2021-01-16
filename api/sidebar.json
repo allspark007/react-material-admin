@@ -1,0 +1,52 @@
+[
+    { "id": 0, "label": "Dashboard", "link": "/app/dashboard", "icon": "home" },
+    {
+      "id": 1,
+      "label": "Typography",
+      "link": "/app/typography",
+      "icon": "typography"
+    },
+    { "id": 2, "label": "Tables", "link": "/app/tables", "icon": "table" },
+    {
+      "id": 3,
+      "label": "Notifications",
+      "link": "/app/notifications",
+      "icon": "notification"
+    },
+    {
+      "id": 4,
+      "label": "UI Elements",
+      "link": "/app/ui",
+      "icon": "uielement",
+      "children": [
+        { "label": "Icons", "link": "/app/ui/icons" },
+        { "label": "Charts", "link": "/app/ui/charts" },
+        { "label": "Maps", "link": "/app/ui/maps" }
+      ]
+    },
+    { "id": 5, "type": "divider" },
+    { "id": 6, "type": "title", "label": "HELP" },
+    { "id": 7, "label": "Library", "link": "", "icon": "library" },
+    { "id": 8, "label": "Support", "link": "", "icon": "support" },
+    { "id": 9, "label": "FAQ", "link": "", "icon":"faq" },
+    { "id": 10, "type": "divider" },
+    { "id": 11, "type": "title", "label": "PROJECTS" },
+    {
+      "id": 12,
+      "label": "My recent",
+      "link": "",
+      "icon": "dotwarning"
+    },
+    {
+      "id": 13,
+      "label": "Starred",
+      "link": "",
+      "icon": "dotprimary"
+    },
+    {
+      "id": 14,
+      "label": "Background",
+      "link": "",
+      "icon": "dotsecondary"
+    }
+  ]
